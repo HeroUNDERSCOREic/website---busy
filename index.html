@@ -38,23 +38,20 @@
         let booked = values[1].trim().toLowerCase();
 
         if (busy == "yes") {
-            document.getElementById("statusText").textContent = "hero doesn't feel like accepting any booking right now sorry";
+            document.getElementById("statusText").textContent = "hero doesn't feel like accepting any booking right now sorry...";
             document.getElementById("statusText").style.color = "#ff4b4b";
+            document.getElementById("statusImage").src = "https://somehero.s-ul.eu/RAQauAwm";
         }
         else if (busy == "no" && booked == "no") {
-            document.getElementById("statusText").textContent = "hero is free but she doesn't wanna be booked you can try shooting your shot though!";
+            document.getElementById("statusText").textContent = "hero is free, but she doesn't wanna be booked.. y-you can try shooting your shot though!";
             document.getElementById("statusText").style.color = "#ffd166";
+            document.getElementById("statusImage").src = "https://somehero.s-ul.eu/K8IB2W0t";
         }
         else if (busy == "no" && booked == "yes") {
-            document.getElementById("statusText").textContent = "hero is free and okay with you booking her for something! dm!";
+            document.getElementById("statusText").textContent = "hero is free... shoot a dm and see what she says!";
             document.getElementById("statusText").style.color = "#7CFC98";
+            document.getElementById("statusImage").src = "https://somehero.s-ul.eu/ir6ULaig";
         }
-        else {
-            document.getElementById("statusText").textContent = "something is wrong with the sheet values";
-            document.getElementById("statusText").style.color = "#ffffff";
-        }
-
-        document.getElementById("statusImage").src = "https://somehero.s-ul.eu/bACRCjAT";
 
         const list = await fetch(page2);
         const text = await list.text();
@@ -70,7 +67,7 @@
 
             html += `
                 <tr>
-                    <td>${date}</td>
+                    <td>${date}+" - "</td>
                     <td>${reason}</td>
                 </tr>
             `;
