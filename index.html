@@ -21,28 +21,64 @@
     <div>
         <h1 id="statusText">loading...</h1>
         <img id="statusImage" src="" alt="status image" width="272" height="142">
+        <div id="schedule"></div>
     </div>
 
     <script type="module">
         const page1 = "https://docs.google.com/spreadsheets/d/1r1UJMhMoP81Kiyoteyr2gfyST2B3RLvUHF3jYbaScOg/export?format=csv&gid=0";
-        const page2 = "https://docs.google.com/spreadsheets/d/1r1UJMhMoP81Kiyoteyr2gfyST2B3RLvUHF3jYbaScOg/export?format=csv&gid=105834990#gid=105834990";
+        const page2 = "https://docs.google.com/spreadsheets/d/1r1UJMhMoP81Kiyoteyr2gfyST2B3RLvUHF3jYbaScOg/export?format=csv&gid=105834990";
 
         const variables = await fetch(page1);
-        const list = await fetch(page2)
+        const variableText = await variables.text();
+
+        const variableRows = variableText.trim().split("\n");
+        const values = variableRows[1].split(",");
+
+        let busy = values[0].trim().toLowerCase();
+        let booked = values[1].trim().toLowerCase();
+
+        if (busy == "yes") {
+            document.getElementById("statusText").textContent = "hero doesn't feel like accepting any booking right now sorry";
+            document.getElementById("statusText").style.color = "#ff4b4b";
+        }
+        else if (busy == "no" && booked == "no") {
+            document.getElementById("statusText").textContent = "hero is free but she doesn't wanna be booked you can try shooting your shot though!";
+            document.getElementById("statusText").style.color = "#ffd166";
+        }
+        else if (busy == "no" && booked == "yes") {
+            document.getElementById("statusText").textContent = "hero is free and okay with you booking her for something! dm!";
+            document.getElementById("statusText").style.color = "#7CFC98";
+        }
+        else {
+            document.getElementById("statusText").textContent = "something is wrong with the sheet values";
+            document.getElementById("statusText").style.color = "#ffffff";
+        }
+
+        document.getElementById("statusImage").src = "https://somehero.s-ul.eu/bACRCjAT";
+
+        const list = await fetch(page2);
         const text = await list.text();
 
-        console.log(text);
+        const rows = text.trim().split("\n").slice(1);
 
-        let status = "available";
-        let customMessage = text;
+        let html = "<table>";
 
-        document.getElementById("statusText").textContent = customMessage;
+        rows.forEach(row => {
+            const parts = row.split(",");
+            const date = parts[0];
+            const reason = parts[1];
 
-        if (status === "available") {
-            document.getElementById("statusImage").src = "https://somehero.s-ul.eu/bACRCjAT";
-        } else {
-            document.getElementById("statusImage").src = "YOUR_BUSY_IMAGE_URL";
-        }
+            html += `
+                <tr>
+                    <td>${date}</td>
+                    <td>${reason}</td>
+                </tr>
+            `;
+        });
+
+        html += "</table>";
+
+        document.getElementById("schedule").innerHTML = html;
     </script>
 </body>
 </html>
