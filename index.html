@@ -1,0 +1,46 @@
+<!-- https://www.youtube.com/watch?v=PlxWf493en4 - was used to relearn html! -->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: #222034;
+            color: white;
+            font-family: verdana;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="statusText">loading...</h1>
+        <img id="statusImage" src="" alt="status image" width="272" height="142">
+    </div>
+
+    <script type="module">
+        const url = "https://docs.google.com/spreadsheets/d/1r1UJMhMoP81Kiyoteyr2gfyST2B3RLvUHF3jYbaScOg/export?format=csv&gid=0";
+
+        const response = await fetch(url);
+        const text = await response.text();
+
+        console.log(text);
+
+        let status = "available";
+        let customMessage = "hero is busy";
+
+        document.getElementById("statusText").textContent = customMessage;
+
+        if (status === "available") {
+            document.getElementById("statusImage").src = "https://somehero.s-ul.eu/bACRCjAT";
+        } else {
+            document.getElementById("statusImage").src = "YOUR_BUSY_IMAGE_URL";
+        }
+    </script>
+</body>
+</html>
