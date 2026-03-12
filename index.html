@@ -67,8 +67,9 @@
 
             html += `
                 <tr>
-                    <td>${date}+" - "</td>
-                    <td>${reason}</td>
+                    <td style="text-align:right; width:140px;">${date}</td>
+                    <td style="padding:0 6px;">-</td>
+                    <td style="text-align:left; font-weight:bold;">${reason}</td>
                 </tr>
             `;
         });
