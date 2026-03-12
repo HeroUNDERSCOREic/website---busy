@@ -39,17 +39,21 @@
 
         if (busy == "yes") {
             document.getElementById("statusText").textContent = "hero doesn't feel like accepting any bookings right now sorry...";
-            document.getElementById("statusText").style.color = "#ff4b4b";
+            document.getElementById("statusText").style.color = "#e02258";
+            document.getElementById("statusImage").src = "https://somehero.s-ul.eu/RAQauAwm";
+        } else if (busy == "yes" && booked == "yes") {
+            document.getElementById("statusText").textContent = "hero is busy, but if it's urgent... just dm her.";
+            document.getElementById("statusText").style.color = "#e02258";
             document.getElementById("statusImage").src = "https://somehero.s-ul.eu/RAQauAwm";
         }
         else if (busy == "no" && booked == "no") {
-            document.getElementById("statusText").textContent = "hero is free, but she doesn't wanna be booked.. y-you can try shooting your shot though!";
-            document.getElementById("statusText").style.color = "#ffd166";
+            document.getElementById("statusText").textContent = "hero is free, but she doesn't wanna be booked... y-you can try shooting your shot though!";
+            document.getElementById("statusText").style.color = "#dbb06b";
             document.getElementById("statusImage").src = "https://somehero.s-ul.eu/K8IB2W0t";
         }
         else if (busy == "no" && booked == "yes") {
             document.getElementById("statusText").textContent = "hero is free... shoot a dm and see what she says!";
-            document.getElementById("statusText").style.color = "#7CFC98";
+            document.getElementById("statusText").style.color = "#c3e09f";
             document.getElementById("statusImage").src = "https://somehero.s-ul.eu/ir6ULaig";
         }
 
@@ -67,6 +71,7 @@
 
             html += `
                 <tr>
+
                     <td style="text-align:right; width:140px;">${date}</td>
                     <td style="padding:0 12px;">-</td>
                     <td style="text-align:left; font-weight:bold;">${reason}</td>
