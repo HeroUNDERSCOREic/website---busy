@@ -20,7 +20,7 @@
 <body>
     <div>
         <h1 id="statusText">loading...</h1>
-        <img id="statusImage" src="" alt="status image" width="272" height="142">
+        <img id="statusImage" src="" alt="status image" width="640" height="360">
         <div id="schedule"></div>
     </div>
 
@@ -38,7 +38,7 @@
         let booked = values[1].trim().toLowerCase();
 
         if (busy == "yes") {
-            document.getElementById("statusText").textContent = "hero doesn't feel like accepting any booking right now sorry...";
+            document.getElementById("statusText").textContent = "hero doesn't feel like accepting any bookings right now sorry...";
             document.getElementById("statusText").style.color = "#ff4b4b";
             document.getElementById("statusImage").src = "https://somehero.s-ul.eu/RAQauAwm";
         }
@@ -58,7 +58,7 @@
 
         const rows = text.trim().split("\n").slice(1);
 
-        let html = "<table>";
+        let html = "<table style='margin:auto; text-align:center;'>";
 
         rows.forEach(row => {
             const parts = row.split(",");
@@ -68,7 +68,7 @@
             html += `
                 <tr>
                     <td style="text-align:right; width:140px;">${date}</td>
-                    <td style="padding:0 6px;">-</td>
+                    <td style="padding:0 12px;">-</td>
                     <td style="text-align:left; font-weight:bold;">${reason}</td>
                 </tr>
             `;
