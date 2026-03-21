@@ -49,7 +49,7 @@
         let booked = values[1].trim().toLowerCase();
 
         if (busy == "yes" && booked == "no") {
-            document.getElementById("statusText").textContent = "hero doesn't feel like accepting any bookings right now sorry...";
+            document.getElementById("statusText").textContent = "hero is busy busy busy!";
             document.getElementById("statusText").style.color = "#e02258";
             document.getElementById("statusImage").src = "https://somehero.s-ul.eu/RAQauAwm";
         } else if (busy == "yes" && booked == "yes") {
